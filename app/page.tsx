@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +13,7 @@ import { useInView } from "react-intersection-observer";
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 
+
 export default function Home() {
   const { ref: bannerRef, inView: bannerIsVisible } = useInView();
   const [bannerIsVisibleState, setBannerVisibleState] = useState(false);
@@ -22,6 +23,7 @@ export default function Home() {
   } else {
     setTimeout(() => setBannerVisibleState(false), 100);
   }
+
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7Ab0A]/80">
       <Header />
@@ -31,7 +33,7 @@ export default function Home() {
       </section>
 
       <section id="about" className="snap-start">
-        <About  />
+        <About />
       </section>
 
       <section id="skills" className="snap-start">

@@ -83,7 +83,7 @@ function Projects({}: Props) {
                 <span className="underline decoration-[#F7AB0A]/50">
                   Project {i + 1} of {projects.length}:
                 </span>{" "}
-                <span className="text-[#87CEFA]">{project?.title}</span>
+                {project?.title}
               </h4>
 
               <p className="text-lg text-center md:text-left">

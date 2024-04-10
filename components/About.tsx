@@ -2,12 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-type Props = {
 
-
-};
-
-function About({}: Props) {
+function About() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -49,22 +45,22 @@ function About({}: Props) {
         />
       <div className="space-y-10 px-0 md:px-10 pt-[10rem] md:pt-[18rem] lg:pt-0  ">
         <h4 className="xl:text-4xl md:text-2xl font-semibold">
-          <span className=" text-[#87CEFA] underline decoration-[#F7AB0A]/50">
+          <span className="underline decoration-[#F7AB0A]/50">
             {" "}
             Get to Know Me
           </span>
         </h4>
         <p className="md:text-md">
-          Welcome to my portfolio website. I'm Kaushik, an enthusiastic software
+          Welcome to my portfolio website. This is Kaushik, an enthusiastic software
           developer currently pursuing a Masters in Computer Science and
           Software Engineering at the University of Washington Bothell. As a
-          recent graduate with a Bachelor's in Computer Science and Engineering
+          recent graduate with a Bachelor&apos;s in Computer Science and Engineering
           in 2023, I bring a fresh perspective and a solid foundation in
           computer science principles. My expertise lies in a diverse range of
           programming languages and technologies including Java, Python,
           JavaScript, Data Structures and Algorithms (DSA), Object-Oriented
           Programming (OOPs) concepts, React, Next.js, SQL, and AWS. Throughout
-          my academic journey and professional experiences, I've honed my skills
+          my academic journey and professional experiences, I have honed my skills
           in software development, problem-solving, and project management. I am
           passionate about leveraging technology to create innovative solutions
           that address real-world challenges. With a strong educational

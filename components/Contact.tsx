@@ -22,13 +22,13 @@ function ContactMe({}: Props) {
 
         <div className='flex flex-col space-y-10 pt-28'>
             <h4 className='text-2xl font-semibold text-center'>
-                <span className=' text-[#87CEFA] decoration-[#F7AB0A]/50 underline'>Let's Talk</span>
+                <span className='  decoration-[#F7AB0A]/50 underline'>Let&apos;s Talk</span>
             </h4>
 
             <div className='space-y-5'>
                 <div className='flex items-center space-x-5 justify-center'>
                     <PhoneIcon className='text-[#F7AB0A] h-7 w-7 animate-pulse' />
-                    <p className='md:text-2xl'>+14258642184</p>
+                    <p className='md:text-2xl'>+1-425-864-2184</p>
                 </div>
 
                 <div className='flex items-center space-x-5 justify-center'>
@@ -53,7 +53,7 @@ function ContactMe({}: Props) {
                 <input {...register('subject')} placeholder='Subject' className='contactInput' type='text' />
 
                 <textarea {...register('message')} placeholder='Message' className='contactInput' />
-                <button type='submit' className='bg-[#F7Ab0A] py-5 px-10 rounded-md text-black font-bold text-lg'>Submit</button>
+                <button type='submit' className='bg-[#F7AB0A] py-2 px-10 rounded-md text-gray-300 hover:text-black font-bold text-lg animate-pulse'>Submit</button>
             </form>
         </div>   
     </div>

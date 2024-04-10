@@ -26,7 +26,7 @@ function Certification({img, title, earned, score}: Props) {
         />
 
         <div className='px-0 md:px-10'>
-            <h4 className=' text-[#87CEFA] text-4xl font-semibold'>{title}</h4>
+            <h4 className='text-4xl font-semibold'>{title}</h4>
         </div>
 
         <p className='py-1 text-2xl text-[#F7AB0A]'>{earned}</p>
