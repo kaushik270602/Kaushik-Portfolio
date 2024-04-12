@@ -51,7 +51,7 @@ function About() {
           </span>
         </h4>
         <p className="md:text-md">
-          Welcome to my portfolio website. This is Kaushik, an enthusiastic software
+          This is Kaushik, an enthusiastic software
           developer currently pursuing a Masters in Computer Science and
           Software Engineering at the University of Washington Bothell. As a
           recent graduate with a Bachelor&apos;s in Computer Science and Engineering
