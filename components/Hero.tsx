@@ -10,7 +10,7 @@ type Props = {
 
 function Hero({ reff }: Props) {
   const [text, count] = useTypewriter({
-    words: ["Hi, This is Kaushik Reddy Mitta"],
+    words: ["Hi, This is Venkata Kaushik Mitta"],
   });
   return (
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
