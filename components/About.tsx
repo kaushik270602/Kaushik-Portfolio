@@ -51,24 +51,7 @@ function About() {
           </span>
         </h4>
         <p className="md:text-md">
-          This is Kaushik, an enthusiastic software
-          developer currently pursuing a Masters in Computer Science and
-          Software Engineering at the University of Washington Bothell. As a
-          recent graduate with a Bachelor&apos;s in Computer Science and Engineering
-          in 2023, I bring a fresh perspective and a solid foundation in
-          computer science principles. My expertise lies in a diverse range of
-          programming languages and technologies including Java, Python,
-          JavaScript, Data Structures and Algorithms (DSA), Object-Oriented
-          Programming (OOPs) concepts, React, Next.js, SQL, and AWS. Throughout
-          my academic journey and professional experiences, I have honed my skills
-          in software development, problem-solving, and project management. I am
-          passionate about leveraging technology to create innovative solutions
-          that address real-world challenges. With a strong educational
-          background, a passion for software development, and a commitment to
-          continuous learning, I am eager to embark on new challenges and
-          contribute to the ever-evolving field of technology. Thank you for
-          visiting my portfolio, and I look forward to connecting with you
-          further.
+          This is Kaushik, an enthusiastic software developer who recently graduated with a Master&apos;s in Computer Science and Software Engineering from the University of Washington Bothell. Building upon my Bachelor&apos;s in Computer Science and Engineering completed in 2023, I bring a comprehensive understanding of computer science principles and advanced technical expertise. My proficiency spans a diverse range of programming languages and technologies including Java, Python, JavaScript, Data Structures and Algorithms (DSA), Object-Oriented Programming (OOPs) concepts, React, Next.js, SQL, and AWS. Throughout my academic journey and hands-on project experiences, I have developed strong skills in software development, problem-solving, and project management. I am passionate about leveraging cutting-edge technology to create innovative solutions that address real-world challenges. With a solid educational foundation, proven project success, and a commitment to continuous learning, I am ready to take on new professional challenges and make meaningful contributions to the technology industry. Thank you for visiting my portfolio, and I look forward to connecting with you further.
         </p>
       </div>
     </motion.div>

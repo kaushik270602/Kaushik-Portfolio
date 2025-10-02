@@ -8,46 +8,46 @@ function Projects({}: Props) {
   const projects = [
     {
       id: 1,
-      title: "LidLift",
+      title: "Fantasy King",
       description:
-        " Developed a hands-free waste management solution integrating IoT technology with AWS services, optimizing waste collection routes and addressing hygiene concerns. Utilized HC-SR04 sensors and an ESP32 Thing microcontroller for accurate detection and seamless interaction with the motorized lid mechanism. Implemented AWS IoT Core, DynamoDB, Lambda function, and SNS for efficient data processing, storage, and real-time notifications, demonstrating accuracy and reliability in a controlled environment.",
+        "Built a full IPL fantasy platform with homepage, schedule, teams, leaderboard, and authentication, serving 50+ users in beta and achieving 75% active participation weekly. Designed and implemented a React-based interface for creating and managing fantasy teams, integrating live match schedules, team profiles, and a dynamic leaderboard. Built Node.js APIs with MongoDB for real-time data handling and deployed on AWS to ensure scalable, low-latency performance during peak match hours.",
       imgSrc: "",
     },
     {
       id: 2,
+      title: "ISS Keyboard Warriors",
+      description:
+        "Engineered a speed typing application for UWB Hacks 2025, boosting participation by 40% over prior events. Implemented secure authentication via Clerk and real-time metrics tracking with Supabase, enabling live leaderboards. Deployed on AWS Amplify, achieving 30+ users completing 90+ tests in 24 hours, demonstrating fast adoption and system reliability.",
+      imgSrc: "",
+    },
+    {
+      id: 3,
+      title: "LidLift",
+      description:
+        "Developed a hands-free IoT waste management system, reducing manual collection errors by 50% in testing. Integrated ESP32 Thing and HC-SR04 sensors with AWS IoT Core, DynamoDB, Lambda, and SNS for real-time notifications and high reliability (95%). Optimized collection routes and automated lid operations, demonstrating potential operational cost savings for smart facilities.",
+      imgSrc: "",
+    },
+    {
+      id: 4,
       title: "Cartmaster",
       description:
         " Developed an e-commerce website for a clothing store from scratch, encompassing essential features such as homepage, sign-up/sign-in pages, shop, cart, and checkout, ensuring a seamless user experience throughout. Utilized React and SASS for front-end development, integrating React routing for smooth page transitions, and Firebase for authentication and database management, ensuring secure and efficient handling of user data. Implemented Redux for optimizing performance and scalability, and hosted the website on Firebase for reliable and accessible deployment.",
       imgSrc: "",
     },
     {
-      id: 3,
+      id: 5,
       title: "Amazon clone using HTML5 and CSS3",
       description:
         " Developed a web application mimicking the user interface and basic functionality of the Amazon e-commerce platform using HTML and CSS. Designed and structured the front-end layout to closely resemble the Amazon website, incorporating product listings, search functionality, and navigation elements.Utilized CSS for styling, including customizing fonts, colors, and layout for a polished visual presentation.",
       imgSrc: "",
     },
     {
-      id: 4,
+      id: 6,
       title: "HMM based Trust Evaluation in VANETs",
       description:
         " Developed a Trust worthy model using HMM and block chain to increase accuracy in wireless communication in VANETs using using TCL and NS2 simulator. Results indicated that the HMM-based approach achieved higher accuracy, lower false positive rates and can be effective in mitigating various security threats in VANETs.",
       imgSrc: "",
     },
-    {
-      id: 5,
-      title: "Digit Classification",
-      description:
-        " Applied Random Forest Classifier Algorithm on the dataset consisting of 0-9 digits converted from image to input features, and every row represents a specific digit image along with labels for every row. The project is divided into several parts, including importing the dataset and cleaning the data, splitting the data for training and testing purposes, and using the Random Forest Classification model to predict the image values. Achieved an accuracy score of 96. ",
-      imgSrc: "",
-    },
-    {
-      id: 6,
-      title: "Wine Quality",
-      description:
-         " Applied linear regression to check quality of wine sample based on its physicochemical and sensory variables from the dataset related to red variant of the Portuguese ”Vindo Verde” wine. Used Numpy, Pandas, Matlplotlib.pyplot, Sklearn.metrics, Seaborn and Math libraries. The project is divided into several parts, including data insertion and cleaning, data exploring and selecting the features to be used, regression model, and accuracy improvement. Obtained an accuracy score of 95. ",
-      imgSrc: "",
-      },
   ];
   return (
     <motion.div

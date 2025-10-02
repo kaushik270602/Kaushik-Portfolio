@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/16/solid'
 import { useForm, SubmitHandler} from 'react-hook-form'
 
@@ -12,8 +12,38 @@ type Inputs = {
 type Props = {}
 
 function ContactMe({}: Props) {
-  const {register, handleSubmit} = useForm<Inputs>()
-  const onSubmit: SubmitHandler<Inputs> = (formData) => console.log(formData)
+  const {register, handleSubmit, reset} = useForm<Inputs>()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  
+  const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      if (response.ok) {
+        setSubmitStatus('success')
+        reset() // Clear the form
+      } else {
+        const errorData = await response.json()
+        console.error('Email error:', errorData)
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
   return (
     <div className='h-screen flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center'>
         <h3 className='absolute top-24 uppercase tracking-[20px] text-[#ADD8E6] text-2xl'>
@@ -33,7 +63,7 @@ function ContactMe({}: Props) {
 
                 <div className='flex items-center space-x-5 justify-center'>
                     <EnvelopeIcon className='text-[#F7AB0A] h-7 w-7 animate-pulse' />
-                    <p className='md:text-2xl'>vmitta@uw.edu</p>
+                    <p className='md:text-2xl'>kaushik270602@gmail.com</p>
                 </div>
 
                 <div className='flex items-center space-x-5 justify-center'>
@@ -53,7 +83,29 @@ function ContactMe({}: Props) {
                 <input {...register('subject')} placeholder='Subject' className='contactInput' type='text' />
 
                 <textarea {...register('message')} placeholder='Message' className='contactInput' />
-                <button type='submit' className='bg-[#F7AB0A] py-2 px-10 rounded-md text-gray-300 hover:text-black font-bold text-lg animate-pulse'>Submit</button>
+                <button 
+                  type='submit' 
+                  disabled={isSubmitting}
+                  className={`py-2 px-10 rounded-md font-bold text-lg ${
+                    isSubmitting 
+                      ? 'bg-gray-500 text-gray-300 cursor-not-allowed' 
+                      : 'bg-[#F7AB0A] text-gray-300 hover:text-black animate-pulse'
+                  }`}
+                >
+                  {isSubmitting ? 'Sending...' : 'Submit'}
+                </button>
+                
+                {submitStatus === 'success' && (
+                  <p className='text-green-400 text-center mt-2'>
+                    ✅ Message sent successfully! I'll get back to you soon.
+                  </p>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <p className='text-red-400 text-center mt-2'>
+                    ❌ Failed to send message. Please try again or email me directly.
+                  </p>
+                )}
             </form>
         </div>   
     </div>

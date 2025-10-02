@@ -25,18 +25,13 @@ export default function Header() {
       >
         {/* Social Icons */}
         <SocialIcon
-          url="https://www.linkedin.com/in/venkata-sai-kaushik-reddy-mitta-ba0a9121a"
+          url="https://www.linkedin.com/in/venkata-kaushik-mitta-ba0a9121a/"
           fgColor="#0A66C2"
           bgColor="transparent"
         />
         <SocialIcon
           url="https://github.com/kaushik270602"
           fgColor="#fafafa"
-          bgColor="transparent"
-        />
-        <SocialIcon
-          url="https://twitter.com/Kaushik2706"
-          fgColor="#1DA1F2"
           bgColor="transparent"
         />
       </motion.div>
