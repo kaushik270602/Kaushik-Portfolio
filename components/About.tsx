@@ -2,58 +2,153 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-
 function About() {
+  const stats = [
+    { label: "Years Experience", value: "2+" },
+    { label: "Projects Built", value: "10+" },
+    { label: "Technologies", value: "25+" },
+    { label: "Certifications", value: "2" },
+  ];
+
+  const education = [
+    {
+      degree: "Master of Science",
+      field: "Computer Science & Software Engineering",
+      school: "University of Washington",
+      location: "Bothell, WA",
+      period: "Sep. 2023 - Aug. 2025",
+    },
+    {
+      degree: "Bachelor of Engineering",
+      field: "Computer Science & Engineering",
+      school: "Chaitanya Bharathi Institute of Technology",
+      location: "Hyderabad, India",
+      period: "Aug. 2019 - May 2023",
+    },
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-      className="flex flex-col relative h-screen text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center"
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+      className="relative flex flex-col items-center justify-center pb-12 px-6 overflow-hidden"
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-[#ADD8E6] text-2xl">
-        About
-      </h3>
-      <div className="pt-[10rem] md:pt-0 md:hidden">
-        <motion.img
-          initial={{
-            x: -200,
-            opacity: 0,
-          }}
-          transition={{
-            duration: 1.2,
-          }}
-          whileInView={{ opacity: 1, x: 0 }}
+      {/* Section Title */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="relative z-10 text-center mb-4"
+      >
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
           viewport={{ once: true }}
-          src="./photo1.jpeg"
-          className="-mb-[20rem] md:mb-0 flex-shrink-0 w-36 h-36 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px} xl:h-[400px]"
+          className="font-credits text-sm tracking-[8px] text-gray-500 uppercase"
+        >
+          Chapter One
+        </motion.span>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="h-[2px] w-32 bg-gradient-to-r from-transparent via-cinema-gold to-transparent mx-auto mt-3"
         />
+      </motion.div>
+
+      {/* Main Content */}
+      <div className="relative z-10 max-w-7xl w-full grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        {/* Image Side */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="relative flex justify-center"
+        >
+          {/* Decorative Frame */}
+          <div className="relative">
+            {/* Gold Corner Accents */}
+            <div className="absolute -top-4 -left-4 w-20 h-20 border-t-2 border-l-2 border-cinema-gold" />
+            <div className="absolute -bottom-4 -right-4 w-20 h-20 border-b-2 border-r-2 border-cinema-gold" />
+            
+            {/* Main Image */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.5 }}
+              className="relative overflow-hidden rounded-lg shadow-2xl"
+            >
+              <img
+                src="./photo1.jpeg"
+                alt="Kaushik Mitta"
+                className="w-72 h-72 md:w-96 md:h-96 object-cover"
+              />
+              
+              {/* Shine Effect */}
+              <motion.div
+                animate={{ x: ["-100%", "100%"] }}
+                transition={{ duration: 4, repeat: Infinity, repeatDelay: 3 }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
+              />
+            </motion.div>
+
+          </div>
+        </motion.div>
+
+        {/* Content Side */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="space-y-4"
+        >
+          {/* Intro */}
+          <div>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              I&apos;m <span className="text-cinema-gold font-semibold">Venkata Kaushik Mitta</span>, 
+              a Software Developer currently working at <span className="text-cinema-gold">Secure AIs</span>, 
+              where I architect enterprise-grade AI security solutions. Recently graduated with a Master&apos;s in 
+              Computer Science and Software Engineering from the University of Washington Bothell, I specialize 
+              in building secure, scalable applications with a focus on ML/AI, cloud architecture, and full-stack development.
+            </p>
+          </div>
+
+          {/* Education */}
+          <div className="space-y-4">
+            <h4 className="font-credits text-sm tracking-[4px] text-cinema-gold uppercase">Education</h4>
+            {education.map((edu, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 + index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
+              >
+                <div className="flex flex-wrap justify-between items-start gap-2">
+                  <div>
+                    <h5 className="text-black font-semibold">{edu.degree}</h5>
+                    <p className="text-gray-500 text-sm">{edu.field}</p>
+                    <p className="text-cinema-gold text-sm">{edu.school}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-gray-400 text-xs">{edu.location}</p>
+                    <p className="text-gray-500 text-xs font-credits tracking-wider">{edu.period}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+        </motion.div>
       </div>
 
-      <motion.img
-          initial={{
-            x: -200,
-            opacity: 0,
-          }}
-          transition={{
-            duration: 1.2,
-          }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          src="./photo1.jpeg"
-          className="-mb-[20rem] md:mb-0 hidden md:inline flex-shrink-0 w-36 h-36 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px} xl:h-[400px]"
-        />
-      <div className="space-y-10 px-0 md:px-10 pt-[10rem] md:pt-[18rem] lg:pt-0  ">
-        <h4 className="xl:text-4xl md:text-2xl font-semibold">
-          <span className="underline decoration-[#F7AB0A]/50">
-            {" "}
-            Get to Know Me
-          </span>
-        </h4>
-        <p className="md:text-md">
-          This is Kaushik, an enthusiastic software developer who recently graduated with a Master&apos;s in Computer Science and Software Engineering from the University of Washington Bothell. Building upon my Bachelor&apos;s in Computer Science and Engineering completed in 2023, I bring a comprehensive understanding of computer science principles and advanced technical expertise. My proficiency spans a diverse range of programming languages and technologies including Java, Python, JavaScript, Data Structures and Algorithms (DSA), Object-Oriented Programming (OOPs) concepts, React, Next.js, SQL, and AWS. Throughout my academic journey and hands-on project experiences, I have developed strong skills in software development, problem-solving, and project management. I am passionate about leveraging cutting-edge technology to create innovative solutions that address real-world challenges. With a solid educational foundation, proven project success, and a commitment to continuous learning, I am ready to take on new professional challenges and make meaningful contributions to the technology industry. Thank you for visiting my portfolio, and I look forward to connecting with you further.
-        </p>
-      </div>
     </motion.div>
   );
 }

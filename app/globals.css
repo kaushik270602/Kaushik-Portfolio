@@ -1,13 +1,604 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-    .heroButton{
-        @apply px-6 py-2 border border-[#242424] rounded-full uppercase text-xs tracking-widest text-gray-500 transition-all hover:border-[#f7ab0a]/40 cursor-pointer  hover:text-[#f7ab0a]/40
-    }
+:root {
+  --cinema-black: #0a0a0a;
+  --cinema-dark: #121212;
+  --cinema-charcoal: #1a1a1a;
+  --cinema-gold: #d4af37;
+  --cinema-amber: #ffbf00;
+  --cinema-silver: #c0c0c0;
+  --cinema-cream: #f5f5dc;
+  --cinema-red: #8b0000;
+}
 
-    .contactInput{
-        @apply outline-none bg-slate-400/10 rounded-sm border-b px-6 py-4 border-[#242424] text-gray-500 placeholder-gray-500 transition-all focus:border-[#f7ab0a]/40 focus:text-[#F7AB0A]/40 hover:border-[#F7AB0A]/40 
-    }
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar - Cinematic Style */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cinema-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--cinema-gold), var(--cinema-amber));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cinema-amber);
+}
+
+/* Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Letterbox Effect */
+.letterbox::before,
+.letterbox::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 5vh;
+  background: black;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.letterbox::before {
+  top: 0;
+}
+
+.letterbox::after {
+  bottom: 0;
+}
+
+/* Spotlight Effect */
+.spotlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+  animation: spotlight 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes spotlight {
+  0%, 100% { transform: translate(-10%, -10%) scale(1); opacity: 0.3; }
+  50% { transform: translate(10%, 10%) scale(1.2); opacity: 0.6; }
+}
+
+/* Projector Dust Particles */
+.projector-dust {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.dust-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  animation: projectorDust 15s linear infinite;
+}
+
+@keyframes projectorDust {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Vignette Effect */
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 90;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.6) 100%);
+}
+
+/* Cinematic Text Effects */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--cinema-gold) 0%, var(--cinema-amber) 50%, var(--cinema-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--cinema-gold) 0%,
+    var(--cinema-cream) 25%,
+    var(--cinema-gold) 50%,
+    var(--cinema-cream) 75%,
+    var(--cinema-gold) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Glowing Border */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--cinema-gold), transparent, var(--cinema-gold));
+  border-radius: inherit;
+  z-index: -1;
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Film Strip Decoration */
+.film-strip {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--cinema-charcoal) 0px,
+    var(--cinema-charcoal) 20px,
+    transparent 20px,
+    transparent 24px
+  );
+  height: 30px;
+}
+
+/* Curtain Animation */
+.curtain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.curtain-left, .curtain-right {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(180deg, #2d0a0a 0%, #1a0505 100%);
+}
+
+.curtain-left {
+  left: 0;
+  transform-origin: left;
+}
+
+.curtain-right {
+  right: 0;
+  transform-origin: right;
+}
+
+.curtain-fold {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    rgba(0,0,0,0.3) 30px,
+    transparent 60px
+  );
+}
+
+/* 3D Card Effect */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) rotateY(10deg) rotateX(5deg);
+}
+
+/* Movie Poster Style Cards */
+.movie-poster {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.movie-poster::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.2),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.movie-poster:hover::before {
+  left: 100%;
+}
+
+.movie-poster:hover {
+  transform: scale(1.05) translateY(-10px);
+  box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+}
+
+/* Credits Roll Animation */
+.credits-roll {
+  animation: creditsRoll 30s linear infinite;
+}
+
+@keyframes creditsRoll {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
+}
+
+/* Dramatic Entrance */
+.dramatic-entrance {
+  opacity: 0;
+  animation: dramaticEntrance 2s ease-out forwards;
+}
+
+@keyframes dramaticEntrance {
+  0% { 
+    opacity: 0; 
+    transform: scale(1.2);
+    filter: blur(20px);
+  }
+  50% {
+    filter: blur(5px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Lens Flare */
+.lens-flare {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: lensFlare 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes lensFlare {
+  0%, 100% { opacity: 0.2; transform: translate(0, 0) scale(1); }
+  50% { opacity: 0.6; transform: translate(30px, -30px) scale(1.5); }
+}
+
+/* Section Transitions - Credits Roll Feel */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(150px);
+  transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, opacity;
+}
+
+.section-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Rolling Credits Animation Classes */
+.credits-roll-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Override sections to feel more like credits */
+#about, #experience, #skills, #projects, #certifications, #contact {
+  padding-top: 15vh;
+  padding-bottom: 15vh;
+}
+
+@layer components {
+  .heroButton {
+    position: relative;
+    padding: 0.75rem 2rem;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 9999px;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 4px;
+    color: var(--cinema-silver);
+    font-family: var(--font-credits), sans-serif;
+    transition: all 0.5s ease;
+    overflow: hidden;
+  }
+
+  .heroButton:hover {
+    border-color: var(--cinema-gold);
+    color: var(--cinema-gold);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+  }
+
+  .heroButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .heroButton:hover::before {
+    left: 100%;
+  }
+
+  .contactInput {
+    outline: none;
+    background: rgba(26, 26, 26, 0.5);
+    backdrop-filter: blur(4px);
+    border-radius: 0.5rem;
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    padding: 1rem 1.5rem;
+    color: var(--cinema-cream);
+    transition: all 0.5s ease;
+  }
+
+  .contactInput::placeholder {
+    color: rgba(192, 192, 192, 0.5);
+  }
+
+  .contactInput:focus {
+    border-color: var(--cinema-gold);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    background: rgba(18, 18, 18, 0.8);
+  }
+
+  .section-title {
+    font-family: var(--font-cinematic), serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: 0.05em;
+  }
+
+  .section-subtitle {
+    font-family: var(--font-credits), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: rgba(192, 192, 192, 0.6);
+    font-size: 0.875rem;
+  }
+
+  .cinema-card {
+    position: relative;
+    background: linear-gradient(to bottom right, var(--cinema-charcoal), var(--cinema-dark));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .cinema-card:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.15);
+  }
+
+  .cinema-button {
+    position: relative;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(to right, var(--cinema-gold), var(--cinema-amber));
+    color: var(--cinema-black);
+    font-family: var(--font-credits), sans-serif;
+    font-size: 1.125rem;
+    letter-spacing: 0.05em;
+    border-radius: 0.5rem;
+    transition: all 0.5s ease;
+  }
+
+  .cinema-button:hover {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    transform: scale(1.05);
+  }
+
+  .cinema-button:active {
+    transform: scale(0.95);
+  }
+
+  .cinema-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .cinema-button:hover::before {
+    transform: translateX(100%);
+  }
+}
+
+/* Selection Color */
+::selection {
+  background: var(--cinema-gold);
+  color: var(--cinema-black);
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 2px solid var(--cinema-gold);
+  outline-offset: 4px;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .letterbox::before,
+  .letterbox::after {
+    height: 3vh;
+  }
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--cinema-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.loading-reel {
+  width: 100px;
+  height: 100px;
+  border: 4px solid var(--cinema-charcoal);
+  border-top-color: var(--cinema-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Parallax Helper */
+.parallax-container {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.parallax-layer-back {
+  transform: translateZ(-1px) scale(2);
+}
+
+.parallax-layer-front {
+  transform: translateZ(0);
+}
+
+/* Glitch Effect for Title */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--cinema-red);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--cinema-gold);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(31px, 9999px, 94px, 0); }
+  20% { clip: rect(62px, 9999px, 42px, 0); }
+  40% { clip: rect(16px, 9999px, 78px, 0); }
+  60% { clip: rect(84px, 9999px, 26px, 0); }
+  80% { clip: rect(52px, 9999px, 68px, 0); }
+  100% { clip: rect(38px, 9999px, 92px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(65px, 9999px, 12px, 0); }
+  20% { clip: rect(28px, 9999px, 86px, 0); }
+  40% { clip: rect(74px, 9999px, 34px, 0); }
+  60% { clip: rect(46px, 9999px, 58px, 0); }
+  80% { clip: rect(18px, 9999px, 96px, 0); }
+  100% { clip: rect(82px, 9999px, 22px, 0); }
 }

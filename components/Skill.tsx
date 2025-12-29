@@ -1,33 +1,50 @@
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
+
 type Props = {
-  directionLeft?: boolean;
-  img?:string;
-  percentage?:string;
+  img?: string;
+  name?: string;
+  index?: number;
 };
 
-function Skill({ directionLeft ,img , percentage}: Props) {
+function Skill({ img, name, index = 0 }: Props) {
   return (
-    <div className="group relative flex cursor-pointer">
-      <motion.img
-        initial={{
-          x: directionLeft ? -100 : 100,
-          opacity: 0,
-        }}
-        transition={{ duration: 1.2 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        src={img}
-        className="rounded-full border border-gray-300 object-cover w-16 h-16 xl:w-24 xl:h-24 filter group-hover:grayscale transition duration-300 ease-in-out"
-      />
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className="relative"
+    >
+      <div className="relative w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28">
+        {/* Card Container */}
+        <div className="relative w-full h-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+          {/* Skill Image */}
+          <img
+            src={img}
+            alt={name || "Skill"}
+            className="w-full h-full object-cover p-3"
+          />
 
-      <div className="absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white h-16 w-16 xl:w-24 xl:h-24 rounded-full z-0">
-        <div className="flex items-center justify-center h-full">
-          <p className="xl:text-3xl md:text-2xl font-bold text-black opacity-100">
-            {percentage}
-          </p>
+          {/* Corner Accent */}
+          <div className="absolute top-0 right-0 w-0 h-0 border-t-[20px] border-t-cinema-gold/50 border-l-[20px] border-l-transparent" />
         </div>
+
+        {/* Skill Name Below */}
+        {name && (
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 + index * 0.05 }}
+            viewport={{ once: true }}
+            className="block text-gray-600 text-[10px] md:text-xs mt-2 font-credits tracking-wider text-center"
+          >
+            {name}
+          </motion.span>
+        )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
